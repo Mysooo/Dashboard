@@ -10,22 +10,25 @@ const BarChart = ({ data }) => {
             {
                 label: 'Number of Items',
                 data: Object.values(data),
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(0, 123, 255, 0.6)', // Blue background
+                borderColor: 'rgba(0, 123, 255, 1)', // Blue border
                 borderWidth: 1,
             }
         ],
     };
 
     return (
-        <div className="container mx-auto p-4 bg-white border border-gray-200 rounded-lg shadow-md">
-            <h2 className="text-2xl font-bold mb-4">Bar Chart</h2>
+        <div className="container mx-auto p-4 bg-black border border-blue-500 rounded-lg shadow-md">
+            <h2 className="text-2xl font-bold mb-4 text-white">Bar Chart</h2>
             <div className="h-72">
                 <Bar data={chartData} options={{
                     responsive: true,
                     plugins: {
                         legend: {
                             position: 'top',
+                            labels: {
+                                color: 'white', // Legend text color
+                            }
                         },
                         tooltip: {
                             callbacks: {
@@ -42,12 +45,18 @@ const BarChart = ({ data }) => {
                             grid: {
                                 display: false,
                             },
+                            ticks: {
+                                color: 'white', // X-axis text color
+                            }
                         },
                         y: {
                             grid: {
                                 borderDash: [5, 5],
-                                color: '#e5e7eb',
+                                color: '#333', // Darker color for grid lines
                             },
+                            ticks: {
+                                color: 'white', // Y-axis text color
+                            }
                         }
                     }
                 }} />

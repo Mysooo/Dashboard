@@ -5,7 +5,7 @@ const cors = require('cors');
 const app = express();
 const port = 3000;
 app.use(cors())
-const mongoUri = 'mongodb://localhost:27017/transactionsDB';
+const mongoUri = 'mongodb://127.0.0.1:27017/mongosh';
 mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const transactionSchema = new mongoose.Schema({

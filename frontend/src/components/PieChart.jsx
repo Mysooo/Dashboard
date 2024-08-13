@@ -17,12 +17,12 @@ const PieChart = ({ month }) => {
                 const categories = response.data;
 
                 const colorPalette = [
-                    '#FF6384',
-                    '#36A2EB',
-                    '#FFCE56',
-                    '#4BC0C0',
-                    '#9966FF',
-                    '#FF9F40'
+                    '#007BFF', // Blue
+                    '#6610F2', // Purple
+                    '#E83E8C', // Pink
+                    '#FD7E14', // Orange
+                    '#28A745', // Green
+                    '#6F42C1'  // Dark Purple
                 ];
 
                 const labels = Object.keys(categories);
@@ -46,13 +46,34 @@ const PieChart = ({ month }) => {
         fetchPieChartData();
     }, [month]);
 
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>{error}</p>;
+    if (loading) return <p className="text-white">Loading...</p>;
+    if (error) return <p className="text-red-500">{error}</p>;
 
     return (
-        <div>
-            <h2>Category Distribution</h2>
-            <Pie data={data} />
+        <div className="container mx-auto p-4 bg-black border border-blue-500 rounded-lg shadow-md">
+            <h2 className="text-2xl font-bold mb-4 text-white">Category Distribution</h2>
+            <div className="h-72">
+                <Pie data={data} options={{
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                color: 'white', // Legend text color
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function (context) {
+                                    const label = context.label || '';
+                                    const value = context.raw || '';
+                                    return `${label}: ${value}`;
+                                }
+                            }
+                        }
+                    }
+                }} />
+            </div>
         </div>
     );
 };
